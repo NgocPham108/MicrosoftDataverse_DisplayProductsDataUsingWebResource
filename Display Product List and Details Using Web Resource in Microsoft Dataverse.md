@@ -1,4 +1,4 @@
-Display Product List and Details Using Web Resource in Microsoft Dataverse\*\*
+# **Display Product List and Details Using Web Resource in Microsoft Dataverse**
 
 An HTML web resource page can only accept a single custom parameter called `data`. To pass multiple values in the `data` parameter, you need to encode the parameters and decode them in your page. My article demonstrates how to:
 
@@ -9,11 +9,12 @@ An HTML web resource page can only accept a single custom parameter called `data
 
 ---
 
-## ** 1️. Introduction**
+**1️. Introduction**
 
 Microsoft Dataverse is a powerful platform for managing product data in enterprise applications. When building a sales webpage, you may need to **display a list of products from Dataverse**, and when a customer **clicks on a product**, the product details should **automatically display** through a web resource.
 
 **Objectives of this guide:**
+
 ✔ **Connect and retrieve product data from Dataverse.**  
 ✔ **Pass dynamic data to a web resource** when a user clicks on a product.  
 ✔ **Encode and decode parameters to optimize data transmission.**  
@@ -23,7 +24,7 @@ _If you're building a Power Platform application, this technique is essential fo
 
 ---
 
-## ** 2️. Product Data Structure in Dataverse**
+**2️. Product Data Structure in Dataverse**
 
 You need to create a **Products table** in **Dataverse** with the following columns:
 
@@ -40,7 +41,7 @@ You need to create a **Products table** in **Dataverse** with the following colu
 
 ---
 
-## ** 3️. Display Product List from Dataverse**
+**3️. Display Product List from Dataverse**
 
 We will create an HTML page to display the product list. **Data will be retrieved from the Dataverse API** using JavaScript.
 
@@ -80,9 +81,9 @@ loadProducts();
 
 ---
 
-## ** 4️. Encode Product Data Before Passing to Web Resource**
+**4️. Encode Product Data Before Passing to Web Resource**
 
-### **JavaScript Code for Handling Click Events**
+**JavaScript Code for Handling Click Events**
 
 ```javascript
 function openProductDetails(
@@ -101,7 +102,7 @@ function openProductDetails(
 }
 ```
 
-### **Explanation of `openProductDetails()`**
+**Explanation of `openProductDetails()`**
 
 ✔ **Create a data string** containing product details such as name, price, description, manufacturer, stock, and image URL.  
 ✔ **Use `encodeURIComponent()` to encode the data**, ensuring no errors occur when passing it through the URL.  
@@ -109,11 +110,11 @@ function openProductDetails(
 
 ---
 
-## ** 5️. Decode and Display Data in Web Resource**
+**5️. Decode and Display Data in Web Resource**
 
 When the web resource receives the data, it needs to **decode the data** to display the correct product information.
 
-### **JavaScript Code in ProductDetails.htm**
+**JavaScript Code in ProductDetails.htm**
 
 ```javascript
 function getDataParam() {
@@ -144,15 +145,15 @@ function parseDataValue(datavalue) {
 }
 ```
 
-### **Explanation of Functions**
+**Explanation of Functions**
 
-#### **`getDataParam()`**
+**`getDataParam()`**
 
 ✔ **Retrieve data from the URL** and check if the `data` parameter exists.  
 ✔ **If data exists, call `parseDataValue()`** to process it.  
 ✔ **If no data is found, display an error message.**
 
-#### **`parseDataValue()`**
+**`parseDataValue()`**
 
 ✔ **Decode the data from the URL using `decodeURIComponent()`.**  
 ✔ **Split the data string into key-value pairs** (e.g., `name`, `price`, `description`, etc.).  
